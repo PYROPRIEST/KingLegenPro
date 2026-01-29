@@ -23,8 +23,8 @@ def is_enabled(value, default):
 
 SESSION = "Media_search"
 
-API_ID = 26974083
-API_HASH = "e013696bd13ea9495b803a679852da59"
+API_ID = 4266920
+API_HASH = "b2f872abc68f50d954f047c999ec7678"
 BOT_TOKEN = "6141743333:AAHrC11ZFQa-XJIy0K6zrn5j1sItD1PzPmk"
 
 CACHE_TIME = 300
@@ -37,7 +37,7 @@ SPELL_IMG = "https://telegra.ph/file/b58f576fed14cd645d2cf.jpg"
 MELCOW_IMG = "https://telegra.ph/file/e54cae941b9b81f13eb71.jpg"
 MELCOW_VID = ""
 
-ADMINS = [6256516042, 1246881279]
+ADMINS = [6256516042, 1246881279, 5380532624]
 CHANNELS = [-1001591139633]
 
 AUTH_USERS = ADMINS
@@ -51,7 +51,7 @@ COMMAND_HAND_LER = "/"
 
 # -------------------- MONGODB --------------------
 
-DATABASE_URI = "mongodb+srv://grtrobot:grtrobot@cluster0.llshxmk.mongodb.net/?retryWrites=true&w=majority"
+DATABASE_URI = "mongodb+srv://fttgbot007:fttgbot007@cluster0.9r7y7v1.mongodb.net/?appName=Cluster0"
 DATABASE_NAME = "Cluster0"
 COLLECTION_NAME = "Telegram_files"
 
@@ -81,7 +81,7 @@ FILE_FORWARD = "https://t.me/+YkGthFjwHBpmZDY1"
 MSG_ALRT = "𝑪𝑯𝑬𝑪𝑲 & 𝑻𝑹𝒀 𝑨𝑳𝑳 𝑴𝒀 𝑭𝑬𝑨𝑻𝑼𝑹𝑬𝑺"
 
 FILE_CHANNEL = -1001928955385
-LOG_CHANNEL = -1001167461473
+LOG_CHANNEL = -1001562697036
 
 SUPPORT_CHAT = "jackeybots_support"
 
