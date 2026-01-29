@@ -7,7 +7,7 @@ umongo==3.0.1
 requests
 beautifulsoup4
 cinemagoer
-Heroku3
+heroku3
 search_engine_parser==0.6.1
 wget
 aiofiles
@@ -23,6 +23,6 @@ countryinfo
 pytz
 dnspython
 python-math
-Pillow
-lxml>=5.3.0,<6.0.0
-aiohttp>=3.7.4,<4.0.0
+Pillow>=12.0.0
+lxml>=5.4.0,<6.0.0
+aiohttp>=3.13.3,<4.0.0
