@@ -2,6 +2,5 @@ services:
   - type: worker
     name: KingLegenPro
     runtime: python
-    pythonVersion: 3.10.12
     buildCommand: pip install -r requirements.txt
     startCommand: python bot.py
