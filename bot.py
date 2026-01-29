@@ -1,3 +1,20 @@
+# ===============================
+# PATCH FOR MOTOR + PYTHON 3.13
+# ===============================
+import sys
+import asyncio
+
+try:
+    from asyncio import coroutine
+except ImportError:
+    # dummy decorator so motor won't break
+    def coroutine(func):
+        return func
+    asyncio.coroutine = coroutine
+
+# ===============================
+# YOUR NORMAL IMPORTS
+# ===============================
 import logging
 import logging.config
 
@@ -6,7 +23,6 @@ logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("imdbpy").setLevel(logging.ERROR)
-
 
 from pyrogram import Client, __version__, filters
 from pyrogram.raw.all import layer
@@ -22,6 +38,9 @@ import pytz
 from aiohttp import web
 from plugins import web_server
 
+# ===============================
+# BOT CLASS
+# ===============================
 class Bot(Client):
 
     def __init__(self):
@@ -101,8 +120,8 @@ class Bot(Client):
                 yield message
                 current += 1
 
-
-
-
+# ===============================
+# RUN BOT
+# ===============================
 app = Bot()
 app.run()
