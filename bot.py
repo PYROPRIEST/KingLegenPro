@@ -2,7 +2,6 @@
 # PYTHON 3.13 + MOTOR PATCH
 # ===============================
 import asyncio
-
 try:
     from asyncio import coroutine
 except ImportError:
@@ -17,8 +16,9 @@ import logging
 import logging.config
 from datetime import date, datetime
 import pytz
+from typing import Union, Optional, AsyncGenerator
 
-from pyrogram import Client, __version__
+from pyrogram import Client, __version__, types
 from pyrogram.raw.all import layer
 from aiohttp import web
 
@@ -43,7 +43,6 @@ logging.getLogger("aiohttp").setLevel(logging.ERROR)
 # BOT CLASS
 # ===============================
 class Bot(Client):
-
     def __init__(self):
         super().__init__(
             name=SESSION,
@@ -79,6 +78,7 @@ class Bot(Client):
         tz = pytz.timezone("Asia/Kolkata")
         today = date.today()
         now = datetime.now(tz).strftime("%H:%M:%S %p")
+
         await self.send_message(
             chat_id=LOG_CHANNEL,
             text=script.RESTART_TXT.format(today, now)
@@ -89,9 +89,30 @@ class Bot(Client):
         # ===============================
         app = web.AppRunner(await web_server())
         await app.setup()
-        await web.TCPSite(app, "0.0.0.0", PORT).start()
-
+        await web.TCPSite(app, "0.0.0.0", int(PORT)).start()
         logging.info(f"Web server started on PORT {PORT}")
+
+    # ===============================
+    # PYROGRAM v1 COMPAT FIX
+    # ===============================
+    async def iter_messages(
+        self,
+        chat_id: Union[int, str],
+        limit: int,
+        offset: int = 0,
+    ) -> Optional[AsyncGenerator["types.Message", None]]:
+        """
+        Compatibility method for old plugins expecting iter_messages
+        """
+        current = offset
+        while current < limit:
+            ids = list(range(current + 1, min(current + 201, limit + 1)))
+            messages = await self.get_messages(chat_id, ids)
+            if not messages:
+                break
+            for msg in messages:
+                yield msg
+                current += 1
 
     async def stop(self, *args):
         await super().stop()
@@ -101,4 +122,3 @@ class Bot(Client):
 # RUN
 # ===============================
 Bot().run()
-
